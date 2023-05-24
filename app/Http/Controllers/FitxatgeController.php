@@ -25,7 +25,7 @@ class FitxatgeController extends Controller
             ->orderBy("id", "DESC")
             ->first();
 
-        if ($fitxatge->id && !$fitxatge->sortida) {
+        if ($fitxatge && $fitxatge->id && !$fitxatge->sortida) {
             return redirect()->route('inici')->with('error', 'Ja has fitxat surt abans de tornar a fitxar');
         }
 
