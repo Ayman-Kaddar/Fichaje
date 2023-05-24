@@ -1,0 +1,47 @@
+#centrar {
+    display: grid;
+    place-items: center;
+    padding-top: 9vw; /* Utiliza valores proporcionales para el padding */
+}
+
+table {
+    line-height: 2;
+}
+
+#imatgeBody {
+    background-image: url('../img/cercle_dia.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 73vh;
+    width: 100%;
+    position: relative;
+}
+
+.table-container {
+    max-height: 342px; /* Cambiado a max-height en lugar de height */
+    overflow-y: auto; /* Cambiado a overflow-y: auto para mostrar el scroll solo cuando sea necesario */
+}
+
+#tablaFichaje {
+    padding-right: 0.5vw; /* Utiliza valores proporcionales para el padding */
+}
+
+#my-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#my-table th,
+#my-table td {
+    border: 1px solid black;
+    /* padding: 0.8vw; */
+}
+
+.user_name {
+
+	background-color: rgba(0, 0, 0, 0.9);
+	color: white;
+	padding: 12px;
+	border-radius: 10px;
+
+}

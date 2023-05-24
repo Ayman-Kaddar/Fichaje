@@ -1,0 +1,292 @@
+/********************************** CALENDARIO *****************************************************/
+
+#calendarioContenedor {
+    width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+}
+
+/*cabecera de la página*/
+h1 {
+    text-align: center;
+    padding: 0.5em;
+}
+
+/*div principal del calendario*/
+#calendario {
+    border: 1px solid #494856;
+    border-radius: 15px;
+    background-color: #fffafa;
+    text-align: center;
+    /*  width: 100%; */
+}
+
+/*tabla del calendario*/
+#diasc {
+    border: 1px solid #494856;
+    border-collapse: separate;
+    border-spacing: 4px;
+}
+
+#diasc th,
+#diasc td {
+    font: normal 14pt;
+    width: 194px;
+    height: 75px;
+}
+
+#diasc th {
+    color: #e8e8db;
+    background-color: #636057;
+}
+
+#diasc td {
+    color: #494856;
+    background-color: #e8e8db;
+}
+
+/*línea de la fecha actual*/
+#fechaactual {
+    font: bold 12pt;
+    padding: 0.4em;
+}
+
+#fechaactual i {
+    cursor: pointer;
+}
+
+#fechaactual i:hover {
+    color: #494856;
+    text-decoration: underline;
+}
+
+/*formulario de busqueda de fechas*/
+#buscafecha {
+    background-color: #494856;
+    color: #e8e8db;
+    padding: 5px;
+}
+
+#buscafecha select,
+#buscafecha input {
+    background-color: #e8e8db;
+    color: #494856;
+    font: bold 25pt;
+}
+
+#buscafecha [type="text"] {
+    text-align: center;
+}
+
+#buscafecha [type="button"] {
+    cursor: pointer;
+}
+
+/*cabecera del calendario*/
+#anterior {
+    float: left;
+    width: 100px;
+    font-size: 20px;
+    padding: 0.5em 0.1em;
+    cursor: pointer;
+}
+
+#posterior {
+    float: right;
+    width: 100px;
+    /* font: bold 12pt arial; */
+    padding: 0.5em 0.1em;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#anterior:hover {
+    color: #494856;
+    text-decoration: underline;
+}
+
+#posterior:hover {
+    color: #494856;
+    text-decoration: underline;
+}
+
+#titulos {
+    padding: 0.2em;
+    color: #494856;
+}
+
+.textoCalendario {
+    font-size: 1.5rem;
+}
+
+/* CELDA DIV */
+td {
+    position: relative;
+}
+
+.hours-worked {
+    /* display: none; */
+    font-size: 13px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+td:hover .hours-worked {
+    display: block;
+}
+
+
+/* Para pantallas grandes, se ajusta el ancho del contenedor principal */
+@media (min-width: 992px) {
+    #calendarioContenedor {
+        width: 80%;
+    }
+}
+
+/* Para pantallas medianas, se ajusta el ancho de los días de la semana y se disminuye el tamaño de fuente */
+@media only screen and (max-width: 995px) and (min-width: 768px) {
+    #calendarioContenedor {
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    #buscafecha {
+        padding: 0;
+    }
+
+    #diasc th,
+    #diasc td {
+        font: normal 12pt;
+        width: 150px;
+        height: 62px;
+    }
+}
+
+/* Para pantallas pequeñas, se ajusta el ancho del contenedor principal y se cambia la dirección del flexbox */
+
+@media (min-width: 580px) and (max-width: 768px) {
+    #calendarioContenedor {
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    #diasc th,
+    #diasc td {
+        font: normal 12pt;
+        width: 150px;
+        height: 62px;
+    }
+
+    .textoCalendario {
+        font-size: 1.3rem;
+    }
+
+    #buscafecha {
+        padding: 0;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 580px) {
+
+    #calendarioContenedor {
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    #diasc th,
+    #diasc td {
+        font: normal 12pt;
+        width: 150px;
+        height: 45px;
+    }
+
+    .textoCalendario {
+        font-size: 1.1rem;
+    }
+
+    #buscafecha {
+        padding: 0;
+    }
+
+    .hours-worked {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 410px) and (max-width: 480px) {
+    #calendarioContenedor {
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    #diasc th,
+    #diasc td {
+        font: normal 12pt;
+        width: 150px;
+        height: 45px;
+    }
+
+    #titulos {
+        font-size: 27px;
+    }
+
+    .textoCalendario {
+        font-size: 0.9rem;
+    }
+
+    #buscafecha {
+        padding: 0;
+    }
+
+    .hours-worked {
+        font-size: 8px;
+    }
+}
+
+@media (min-width: 200px) and (max-width: 410px) {
+    #calendarioContenedor {
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    #diasc th,
+    #diasc td {
+        font: normal 12pt;
+        width: 150px;
+        height: 45px;
+    }
+
+    #titulos {
+        font-size: 23px;
+    }
+
+    .textoCalendario {
+        font-size: 0.9rem;
+    }
+
+    #buscafecha {
+        padding: 0;
+    }
+
+    .hours-worked {
+        font-size: 8px;
+    }
+}
+

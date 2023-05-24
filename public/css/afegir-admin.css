@@ -1,0 +1,125 @@
+/* Estilos para pantallas grandes */
+@media (min-width: 768px) {
+    .centrar {
+        padding-top: 90px;
+    }
+
+    .table-container {
+        height: 342px;
+    }
+
+    .form-arxiu {
+        max-width: 500px;
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+    .centrar {
+        padding-top: 30px;
+    }
+
+    .table-container {
+        height: 200px;
+    }
+
+    .form-arxiu {
+        max-width: 300px;
+    }
+}
+
+/* Estilos generales */
+#centrar {
+    display: grid;
+    place-items: center;
+}
+
+table {
+    line-height: 2;
+}
+
+#imatgeBody {
+    background-image: url('../img/afegir.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 73vh;
+    width: 100%;
+    position: relative;
+}
+
+.table-container {
+    overflow-y: scroll;
+}
+
+#tablaFichaje {
+    padding-right: 5px;
+}
+
+#my-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#my-table th,
+#my-table td {
+    border: 1px solid black;
+}
+
+.centrar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-arxiu {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.form-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-btn:hover {
+    background-color: #0069d9;
+}
+
+.table-users {
+    padding: 1rem;
+    border-radius: 27px 0 27px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#file {
+    background-color: rgba(255, 255, 255, 0.8); 
+}

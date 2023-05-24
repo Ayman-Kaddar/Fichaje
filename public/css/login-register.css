@@ -1,0 +1,214 @@
+#imatgeBody {
+    background-image: url('../img/verd.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    /* background-color: #0bceaf; */
+
+
+}
+
+
+/* Estilo para el contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: sans-serif;
+    background-color: rgb(30, 30, 30);
+    ;
+}
+
+/* Estilo para la caja de inicio de sesión */
+.login-box {
+    width: 360px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: sans-serif;
+    position: relative;
+}
+
+/* Estilo para el encabezado de la caja de inicio de sesión */
+.lb-header {
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Estilo para los enlaces de Empleado y Administrador */
+.lb-header a {
+    color: #777;
+    text-decoration: none;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+#nou-admin {
+    margin: 0;
+}
+
+/* Estilo para el enlace activo */
+.lb-header a.active {
+    color: #000;
+    background-color: #0bceaf;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el formulario de inicio de sesión del empleado */
+.empleado-form {
+    padding: 0px 30px;
+}
+
+.administrador-form {
+    padding: 39px 30px;
+}
+
+/* Estilo para los campos del formulario */
+.u-form-group {
+    margin-bottom: 20px;
+}
+
+.u-form-group input[type="email"],
+.u-form-group input[type="password"],
+.u-form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Estilo para el botón de inicio de sesión */
+.button-box {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn,
+.btn-google {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.btn:hover,
+.btn-google:hover {
+    background-color: #16a085;
+}
+
+/* Estilo para el mensaje "o" */
+.or {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el enlace de creación de cuenta de empleado */
+.create-account {
+    text-align: center;
+}
+
+.create-account a {
+    color: #1abc9c;
+    text-decoration: none;
+}
+
+.create-account a:hover {
+    color: #16a085;
+}
+
+.title-empresa {
+    font-size: 39px;
+    text-align: center;
+    padding-bottom: 80px;
+}
+
+.info-google {
+    font-size: 21px;
+    text-align: center;
+}
+
+
+
+
+/* ------------------ */
+.paginaActual {
+    color: black !important;
+    font-size: 20px;
+}
+
+.barra-baja {
+    position: relative;
+    display: inline-block;
+}
+
+.barra-baja::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.barra-baja:hover::before {
+    transform: scaleX(1);
+}
+
+/* ------------- Estils per el scrollbar PAGINA WEB ------------- */
+::-webkit-scrollbar {
+    /* ample del scrollbar */
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    /* color del fondo del scrollbar */
+    background: #4b525a;
+}
+
+::-webkit-scrollbar-thumb {
+    /* color del thumb del scrollbar */
+    background: #333;
+    /* border-radius: 6px; */
+    /* border: 1px solid white; */
+}
+
+
+/* Estilos para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .login-box {
+        width: 90%;
+        margin: 20px auto;
+    }
+}

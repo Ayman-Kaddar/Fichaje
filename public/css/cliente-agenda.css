@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendar {
+    width: 850px; /* Ajusta el ancho del calendario según tus necesidades */
+    height: 700px; /* Ajusta la altura del calendario según tus necesidades */
+}
+
+
+@media (max-width: 768px) {
+    /* Estilos para dispositivos con un ancho máximo de 768px (tabletas y teléfonos móviles) */
+    .container {
+        flex-direction: column; /* Cambia la dirección del flex a columna para apilar los elementos */
+    }
+
+    #calendar {
+        width: 100%; /* Ajusta el ancho del calendario al 100% del contenedor */
+        height: auto; /* Ajusta la altura del calendario automáticamente según el contenido */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Estilos para dispositivos con un ancho máximo de 480px (teléfonos móviles en posición vertical) */
+    #calendar {
+        width: 100%; /* Ajusta el ancho del calendario al 100% del contenedor */
+        height: auto; /* Ajusta la altura del calendario automáticamente según el contenido */
+    }
+}
