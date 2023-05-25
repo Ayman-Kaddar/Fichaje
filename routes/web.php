@@ -35,7 +35,11 @@ Route::post('/login-google', function () {
 })->name('login-google')->middleware("guest");
 
 Route::get('/google-callback', function () {
-    $user_google = Socialite::driver('google')->user();
+    try {
+        $user_google = Socialite::driver('google')->user();
+    } catch (Exception $e) {
+        return redirect()->route("login");
+    }
 
     $user = User::where("email", $user_google->email)->first();
 
@@ -48,6 +52,10 @@ Route::get('/google-callback', function () {
         $user->external_id = $user_google->id;
         $user->external_auth = "google";
         $user->update();
+    }
+
+    if ($user->role->id == 1) {
+        return redirect()->route("login")->with("error", "Aquest usuari és un administrador.");
     }
 
     Auth::login($user);
