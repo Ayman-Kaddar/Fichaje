@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Descans;
 use App\Models\User;
 use App\Models\UserImport;
 use App\Models\UserExport;
@@ -54,7 +55,31 @@ class UserController extends Controller
             return redirect()->route("inici");
         }
 
+        $events = $user->events;
+        $fitxatges = $user->fitxatges;
+
+        if ($fitxatges) {
+            foreach ($fitxatges as $fitxatge) {
+                $descansos = Descans::where('fixtage_id', $fitxatge->id)->get();
+
+                if ($descansos) {
+                    foreach ($descansos as $descans) {
+                        $descans->delete();
+                    }
+                }
+
+                $fitxatge->delete();
+            }
+        }
+
+        if ($events) {
+            foreach ($events as $event) {
+                $event->delete();
+            }
+        }
+
         $user->delete();
+
         return redirect()->back()->with('success', 'Empleats ha estat eliminat correctament.');
     }
 }

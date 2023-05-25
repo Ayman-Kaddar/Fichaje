@@ -69,4 +69,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function fitxatges()
+    {
+        return $this->hasMany(Fitxatge::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }
