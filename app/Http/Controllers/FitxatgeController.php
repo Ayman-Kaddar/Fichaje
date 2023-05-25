@@ -85,7 +85,7 @@ class FitxatgeController extends Controller
 
         $descans = Descans::where('fixtage_id', $fitxatge->id)->orderBy("id", "DESC")->first();
 
-        if ($descans->id == null || $descans->continuitat != null) {
+        if (!$descans || ($descans && $descans->continuitat != null)) {
             return redirect()->route('inici')->with('error', "Heu d\' iniciar una pausa abans de continuar");
         }
 

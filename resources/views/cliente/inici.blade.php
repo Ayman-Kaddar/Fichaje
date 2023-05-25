@@ -21,7 +21,7 @@
         @if (session('success'))
             Swal.fire({
                 icon: 'success',
-                title: 'Éxito',
+                title: 'Èxit',
                 text: "{{ session('success') }}",
             });
         @endif
@@ -58,11 +58,15 @@
         </div>
     </div>
 
-
     <span id="titol">
         <h1>IdentWork</h1>
         <h3>el teu fitxatge amb un sol click.</h3>
     </span>
+
+    <div class="text-center">
+        <p class="fs-2">{{ $hores }}h - {{ $estat }}</p>
+    </div>
+
     <!-- BOTONES -->
     <div class="btn-row justify-content-center text-center">
         <form role="form" action="{{ route('fitxatge.entrada') }}" method="post" class="d-inline">
