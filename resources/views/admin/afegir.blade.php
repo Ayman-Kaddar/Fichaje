@@ -3,6 +3,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/afegir-admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/barraNavegacio.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/body.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 @endpush
@@ -58,7 +59,7 @@
                         <thead>
                             <tr>
                                 <th>Nom</th>
-                                <th>Correo electrónico</th>
+                                <th>Correu electrònic</th>
                                 <th>Accions</th>
                             </tr>
                         </thead>

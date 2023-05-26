@@ -1,7 +1,7 @@
 #centrar {
     display: grid;
     place-items: center;
-    padding-top: 9vw; /* Utiliza valores proporcionales para el padding */
+    padding-top: 30px;
 }
 
 table {
@@ -45,3 +45,171 @@ table {
 	border-radius: 10px;
 
 }
+
+/* Estilos para pantallas pequeñas */
+/* @media (max-width: 485px) {
+    #tablaFichaje {
+        width: 95%;
+        font-size: 7px;
+    }
+
+    #buscador {
+        width: 95%;
+    }
+} */
+
+@media only screen and (max-width: 1300px) {
+
+    /* #centrar {
+        font-size: 12px;
+    } */
+
+    .col-md-7 {
+        max-width: 95.333333%;
+    }
+
+    .table-container {
+        height: 240px;
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+
+    #centrar {
+        font-size: 19px;
+    }
+
+    .table-container {
+        height: 240px;
+    }
+}
+
+@media only screen and (max-width: 1024px) and (max-height: 600px){
+
+    #centrar {
+        font-size: 15px;
+    }
+
+    .table-container {
+        height: 240px;
+    }
+}
+@media only screen and (max-width: 935px) {
+
+    #centrar {
+        font-size: 18px;
+    }
+
+}
+
+@media only screen and (max-width: 860px) {
+
+    #centrar {
+        font-size: 16px;
+    }
+
+}
+
+@media only screen and (max-width: 784px) {
+
+    #centrar {
+        font-size: 15px;
+    }
+
+    .table-container {
+        height: 280px;
+    }
+}
+
+@media only screen and (max-width: 660px) {
+    .descans {
+        display: none;
+    }
+
+    #centrar {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 482px) {
+
+    #centrar {
+        font-size: 16px;
+    }
+
+    #buscador {
+        width: 80%;
+    }
+    
+    .table-container {
+        height: 260px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    #centrar {
+        font-size: 15px;
+    }
+
+    #buscador {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+
+    #centrar {
+        font-size: 14px;
+    }
+
+    .select2-selection__rendered {
+        max-width: 20px;
+     }
+     
+}
+
+@media only screen and (max-width: 405px) {
+
+    #centrar {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 389px) {
+
+    #centrar {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 367px) {
+
+    #centrar {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (max-width: 349px) {
+
+    #centrar {
+        font-size: 10px;
+    }
+
+    #buscador {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 328px) {
+
+    #centrar {
+        font-size: 9px;
+    }
+
+    #buscador {
+        width: 50%;
+    }
+}
+
+

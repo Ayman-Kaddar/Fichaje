@@ -1,11 +1,8 @@
 /* Estilos para pantallas grandes */
-@media (min-width: 768px) {
-    .centrar {
-        padding-top: 90px;
-    }
+@media only screen and (min-width: 768px) {
 
     .table-container {
-        height: 342px;
+        height: 322px;
     }
 
     .form-arxiu {
@@ -14,17 +11,19 @@
 }
 
 /* Estilos para pantallas pequeñas */
-@media (max-width: 767px) {
+@media only screen and (max-width: 480px) {
     .centrar {
         padding-top: 30px;
-    }
-
-    .table-container {
-        height: 200px;
+        width: 90%;
+        font-size: 13px;
     }
 
     .form-arxiu {
         max-width: 300px;
+    }
+
+    .table-container {
+        height: 192px !important;
     }
 }
 
@@ -49,6 +48,8 @@ table {
 
 .table-container {
     overflow-y: scroll;
+    height: 242px;
+
 }
 
 #tablaFichaje {
@@ -89,6 +90,7 @@ table {
 .form-label {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    background-color: #FFFFFFCC;
 }
 
 .form-input {
