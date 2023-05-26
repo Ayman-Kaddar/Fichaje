@@ -26,4 +26,9 @@ class Fitxatge extends Model
         $this->continuacio_count += 1;
         $this->save();
     }
+
+    public function descansos()
+    {
+        return $this->belongsTo(Descans::class);
+    }
 }
