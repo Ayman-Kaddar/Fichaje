@@ -15,7 +15,11 @@
     .centrar {
         padding-top: 30px;
         width: 90%;
-        font-size: 13px;
+        font-size: 10px;
+    }
+
+    button.btn.btn-danger {
+        font-size: 10px;
     }
 
     .form-arxiu {
@@ -24,6 +28,25 @@
 
     .table-container {
         height: 192px !important;
+    }
+}
+
+@media only screen and (max-width: 340px) {
+
+    .table-container {
+        padding: 0 !important;
+    }
+
+    .centrar {
+        font-size: 10px;
+    }
+
+    div .form-btn {
+        font-size: 12px;
+    }
+
+    button.btn.btn-danger {
+        font-size: 9px;
     }
 }
 

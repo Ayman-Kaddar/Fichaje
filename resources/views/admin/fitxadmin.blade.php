@@ -18,7 +18,7 @@
         <div id="buscador">
             <form action="{{ route('fitxadmin') }}" method="POST" id="form-filter" class="mb-3">
                 @csrf
-                <select name="user_filter" class="select2">
+                <select name="user_filter" class="form-control select2">
                     <option value="" disabled selected>Selecciona un usuari</option>
                     @foreach ($users as $user)
                     <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->email }}</option>

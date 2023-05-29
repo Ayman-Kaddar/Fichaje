@@ -58,6 +58,9 @@ table {
     }
 } */
 
+.select2 {
+    max-width: 100%;  /* Establece el ancho al 100% para que se ajuste al contenedor */
+}
 @media only screen and (max-width: 1300px) {
 
     /* #centrar {
@@ -122,19 +125,19 @@ table {
 }
 
 @media only screen and (max-width: 660px) {
-    .descans {
+    /* .descans {
         display: none;
-    }
+    } */
 
     #centrar {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
 @media only screen and (max-width: 482px) {
 
     #centrar {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     #buscador {
@@ -144,49 +147,43 @@ table {
     .table-container {
         height: 260px;
     }
+
 }
 
 @media only screen and (max-width: 450px) {
 
     #centrar {
-        font-size: 15px;
+        font-size: 14px;
     }
 
-    #buscador {
-        width: 70%;
-    }
 }
 
 @media only screen and (max-width: 425px) {
 
     #centrar {
-        font-size: 14px;
+        font-size: 13px;
     }
-
-    .select2-selection__rendered {
-        max-width: 20px;
-     }
      
 }
 
 @media only screen and (max-width: 405px) {
 
     #centrar {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
 @media only screen and (max-width: 389px) {
 
     #centrar {
-        font-size: 12px;
+        font-size: 11px;
     }
 }
 
 @media only screen and (max-width: 367px) {
 
     #centrar {
-        font-size: 11px;
+        font-size: 10px;
     }
 }
 
@@ -196,19 +193,20 @@ table {
         font-size: 10px;
     }
 
-    #buscador {
-        width: 60%;
-    }
 }
 
-@media only screen and (max-width: 328px) {
+@media only screen and (max-width: 335px) {
 
     #centrar {
         font-size: 9px;
     }
 
-    #buscador {
-        width: 50%;
+}
+
+@media only screen and (max-width: 309px) {
+
+    #centrar {
+        font-size: 7px;
     }
 }
 
