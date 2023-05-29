@@ -38,17 +38,15 @@ class FitxadminController extends Controller
                     $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / (60 * 60);
                 }
 
-                $fitxatge->entrada = Carbon::parse($fitxatge->entrada)->format('H:i:s');
                 /* $fitxatge->pausa = $fitxatge->pausa ? Carbon::parse($fitxatge->pausa)->format('H:i:s') : "-";
                 $fitxatge->continuitat = $fitxatge->continuitat ? Carbon::parse($fitxatge->continuitat)->format('H:i:s') : "-"; */
                 $fitxatge->descans = floor($tempsDescansat) . 'h';
 
-                $fitxatge->sortida = Carbon::parse($fitxatge->sortida)->format('H:i:s');
+
                 $fitxatge->data = Carbon::parse($fitxatge->entrada)->format('d/m/Y');
 
-                // calcular horas totales
-                /* $entrada = Carbon::parse($fitxatge->entrada);
-                $sortida = Carbon::parse($fitxatge->sortida); */
+                $fitxatge->entrada = Carbon::parse($fitxatge->entrada)->format('H:i:s');
+                $fitxatge->sortida = Carbon::parse($fitxatge->sortida)->format('H:i:s');
 
                 $timestamp1 = strtotime($fitxatge->sortida);
                 $timestamp2 = strtotime($fitxatge->entrada);

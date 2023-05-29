@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UserImport implements ToModel, WithUpserts
+class UserImport implements ToModel, WithUpserts, WithHeadingRow
 {
     public function model(array $row)
     {
@@ -17,8 +18,8 @@ class UserImport implements ToModel, WithUpserts
         $role = Role::where("name", "Treballador")->first();
 
         return new User([
-            'name' => $row[0],
-            'email' => $row[1],
+            'name' => $row['nom'],
+            'email' => $row['correu'],
             'role_id' => $role->id,
             'company_id' => Auth::user()->company_id
         ]);

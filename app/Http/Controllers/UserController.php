@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Descans;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\UserImport;
 use App\Models\UserExport;
@@ -10,7 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -44,7 +45,8 @@ class UserController extends Controller
         }
 
         $date = now()->format('YmdHos');
-        $fileName = 'empleats_' . $date . '.csv';
+        $fileName = 'empleats_' . $date . '.xls';
+
         return Excel::download(new UserExport, $fileName);
     }
 
