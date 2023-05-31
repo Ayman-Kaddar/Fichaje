@@ -168,3 +168,63 @@ body {
     background: #333;
 }
 
+@media only screen and (max-width: 470px) {
+
+    .navbar-brand img {
+        max-height: 39px;
+    }
+
+    .fs-4 {
+        font-size: 18px !important;
+    }
+
+    .navbar-brand {
+        margin-right: 0;
+    }
+
+    .navbar-light .navbar-toggler {
+        font-size: 16px;
+    }
+
+    a.nav-link {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+
+    .navbar-brand img {
+        max-height: 35px;
+    }
+
+    .fs-4 {
+        font-size: 15px !important;
+    }
+
+    .navbar-light .navbar-toggler {
+        font-size: 11px;
+    }
+
+    a.nav-link {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+
+    .navbar-brand img {
+        max-height: 33px;
+    }
+
+    .fs-4 {
+        font-size: 13px !important;
+    }
+
+    .navbar-light .navbar-toggler {
+        font-size: 8px;
+    }
+
+    a.nav-link {
+        font-size: 13px;
+    }
+}
