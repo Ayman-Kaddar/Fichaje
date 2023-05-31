@@ -29,13 +29,11 @@
                 <p class="user_name">{{ $user_name }}</p>
             </div>
             <div id="tablaFichaje" class="col-md-7 table-responsive table-container">
-                <table class="table table-dark table-striped" id="my-table">
+                <table class="table table-dark table-striped text-center" id="my-table">
                     <thead>
                         <tr>
                             <th scope="col">Data</th>
                             <th scope="col">Entrada</th>
-                            {{-- <th scope="col" class="pausa-continuitat">Pausa</th>
-                            <th scope="col" class="pausa-continuitat">Continuïtat</th> --}}
                             <th scope="col" class="descans">Descans</th>
                             <th scope="col">Sortida</th>
                             <th scope="col">Temps Total</th>
@@ -47,14 +45,9 @@
                                 <tr>
                                     <td scope="col">{{ $fitxatge->data }}</td>
                                     <td scope="col">{{ $fitxatge->entrada }}</td>
-                                    {{-- <td scope="col"
-                                        class="pausa-continuitat @if ($fitxatge->pausa == '-') text-center @endif">
-                                        {{ $fitxatge->pausa }}</td>
-
-                        <td scope="col" class="pausa-continuitat @if ($fitxatge->continuitat == '-') text-center @endif">
-                            {{ $fitxatge->continuitat }}</td> --}}
                                     <td scope="col" class="descans">{{ $fitxatge->descans }}</td>
-                                    <td scope="col">{{ $fitxatge->sortida }}</td>
+                                    <td scope="col">
+                                        {{ $fitxatge->sortida ?? '-' }}</td>
                                     <td scope="col">{{ $fitxatge->hores_totals }}</td>
                                 </tr>
                             @endforeach

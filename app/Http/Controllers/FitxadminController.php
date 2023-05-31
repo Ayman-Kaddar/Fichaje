@@ -26,6 +26,8 @@ class FitxadminController extends Controller
         if ($request->user_filter) {
             $fitxatges = Fitxatge::orderBy('entrada', 'asc')->where("user_id", $request->user_filter)->get();
 
+            //dd($fitxatges[2]->toArray());
+
             foreach ($fitxatges as $fitxatge) {
                 $descansos = Descans::where('fixtage_id', $fitxatge->id)->get();
 
@@ -46,9 +48,11 @@ class FitxadminController extends Controller
                 $fitxatge->data = Carbon::parse($fitxatge->entrada)->format('d/m/Y');
 
                 $fitxatge->entrada = Carbon::parse($fitxatge->entrada)->format('H:i:s');
-                $fitxatge->sortida = Carbon::parse($fitxatge->sortida)->format('H:i:s');
 
-                $timestamp1 = strtotime($fitxatge->sortida);
+                $sortida = Carbon::parse($fitxatge->sortida)->format('H:i:s');
+                $fitxatge->sortida = $fitxatge->sortida ? Carbon::parse($fitxatge->sortida)->format('H:i:s') : null;
+
+                $timestamp1 = strtotime($sortida);
                 $timestamp2 = strtotime($fitxatge->entrada);
 
                 $diferencia = (($timestamp1 - $timestamp2) / (60 * 60)) - $tempsDescansat;
