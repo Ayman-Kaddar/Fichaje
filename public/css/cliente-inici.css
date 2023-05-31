@@ -37,6 +37,45 @@ h3 {
     display: none;
 }
 
+ /* Estilos para dispositivos con una anchura mayor a 768px */
+ #titol {
+  text-align: center;
+  padding: 3.4vw 2.4vw 0 1.5vw; /* Utiliza valores proporcionales para el padding */
+}
+
+h2,
+h3 {
+  margin: 0;
+}
+
+/* Botones */
+/* .btn-row {
+    margin-bottom: 2vw;
+} */
+
+/* Carrousel */
+#carousel {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  position: relative;
+}
+
+#carousel img {
+  max-width: 100%;
+  max-height: 43vh;
+  object-fit: cover !important;
+}
+
+.fs-2 {
+  background-color: #0bceaf;
+  display: inline-block;
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 10px;
+  font-size: 23px !important;
+}
+
 @media (max-width: 768px) {
     /* Estilos para dispositivos móviles con un ancho máximo de 768px */
   
@@ -44,6 +83,10 @@ h3 {
       padding: 10px;
     }
   
+    .fs-2 {
+      font-size: 17px !important;
+    }
+
     h2,
     h3 {
       font-size: 18px;
@@ -64,33 +107,46 @@ h3 {
     }
   }
   
-  /* Estilos para dispositivos con una anchura mayor a 768px */
-  #titol {
-    text-align: center;
-    padding: 3.4vw 2.4vw 0 1.5vw; /* Utiliza valores proporcionales para el padding */
+ 
+  @media only screen and (max-width: 410px) {
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .fs-2 {
+      font-size: 15px !important;
+    }
+}
+
+@media (min-width: 539px) and (max-width: 541px) {
+
+  h1 {
+    margin-bottom: 0;
   }
-  
-  h2,
-  h3 {
-    margin: 0;
+
+  p {
+    margin-bottom: 0;
   }
-  
-  /* Botones */
-  /* .btn-row {
-      margin-bottom: 2vw;
-  } */
-  
-  /* Carrousel */
-  #carousel {
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100vw;
-    position: relative;
+
+  .fs-2 {
+    font-size: 15px !important;
   }
-  
-  #carousel img {
-    max-width: 100%;
-    max-height: 43vh;
-    object-fit: cover !important;
+}
+
+@media (min-width: 374px) and (max-width: 376px) {
+
+  h1 {
+    margin-bottom: 0;
+    line-height: 0.9;
   }
-  
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .fs-2 {
+    font-size: 15px !important;
+  }
+}
+
