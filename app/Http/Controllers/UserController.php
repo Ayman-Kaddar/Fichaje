@@ -24,10 +24,23 @@ class UserController extends Controller
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
+
             try {
+                DB::beginTransaction();
+
                 Excel::import(new UserImport, $file);
+
+                DB::commit();
             } catch (Exception $e) {
-                return redirect()->back()->with('error', 'El fitxer es incorrecte.');
+                DB::rollBack();
+
+                if (str_starts_with($e->getMessage(), 'Error: ')) {
+                    $error = $e->getMessage();
+                } else {
+                    $error = 'El fitxer es incorrecte';
+                }
+
+                return redirect()->back()->with('error', $error);
             }
 
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,12 @@ class UserImport implements ToModel, WithUpserts, WithHeadingRow
     {
 
         $role = Role::where("name", "Treballador")->first();
+
+        $userExist = User::where('email', $row['correu'])->first();
+
+        if ($userExist) {
+            throw new Exception('Error: El correu' . $row['correu'] . ' ja està registrat.');
+        }
 
         return new User([
             'name' => $row['nom'],
