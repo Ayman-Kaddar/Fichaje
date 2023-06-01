@@ -63,7 +63,7 @@ h3 {
 
 #carousel img {
   max-width: 100%;
-  max-height: 43vh;
+  max-height: 198px;
   object-fit: cover !important;
 }
 

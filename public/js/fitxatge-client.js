@@ -267,3 +267,21 @@ async function getdata(fecha) {
 
     return res;
 }
+
+// ---- Boto info ----
+    // Al donar-li click al boto de informacio apareixera un popup amb la informacio del joc
+    $("#infoColors").click(function() {
+        Swal.fire({
+            title: '<strong>Què representa cada color?</strong>',
+            icon: 'info',
+            html:
+              '<p style="text-align: left;">Color crema brillant <img src="' + crema_brillant + '" alt="c" style="border: 1px solid black;"> --> dia actual</p>' +
+              '<p style="text-align: left;">Color beix <img src="' + baige + '" alt="c" style="border: 1px solid black;"> --> estàndard</p>' +
+              '<p style="text-align: left;">Color vermell <img src="' + vermell + '" alt="c" style="border: 1px solid black;"> --> ha treballat entre 00:01 h -- 01:59 h</p>' +
+              '<p style="text-align: left;">Color taronja <img src="' + taronja + '" alt="c" style="border: 1px solid black;"> --> ha treballat entre 02:00 h -- 03:59 h</p>' +
+              '<p style="text-align: left;">Color groc <img src="' + groc + '" alt="c" style="border: 1px solid black;"> --> ha treballat entre 04:00 h -- 05:59 h</p>' + 
+              '<p style="text-align: left;">Color verd <img src="' + verd + '" alt="c" style="border: 1px solid black;"> --> ha treballat entre 06:00 h -- 08:00 h</p>',
+            showCloseButton: true,
+          });
+
+    });

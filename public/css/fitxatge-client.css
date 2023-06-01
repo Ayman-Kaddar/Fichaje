@@ -114,10 +114,28 @@ h1 {
 }
 
 #titulos {
-    padding: 0.2em;
+    padding: 0.38em;
     color: #494856;
 }
 
+#informacio {
+    display: grid;
+    place-items: center;
+}
+
+#informacio a {
+    padding-top: 7px;
+    cursor: pointer;
+}
+
+#informacio img {
+    border-radius: 50%; 
+    border: 1px solid black;
+}
+
+#calendarioContenedor {
+    margin-top: 7px !important;
+}
 .textoCalendario {
     font-size: 1.5rem;
 }
