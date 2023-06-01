@@ -86,7 +86,7 @@ class FitxatgeController extends Controller
         $descans = Descans::where('fixtage_id', $fitxatge->id)->orderBy("id", "DESC")->first();
 
         if (!$descans || ($descans && $descans->continuitat != null)) {
-            return redirect()->route('inici')->with('error', "Heu d\' iniciar una pausa abans de continuar");
+            return redirect()->route('inici')->with('error', "Heu de fer una pausa abans de continuar");
         }
 
         $descans->continuitat = now();
@@ -129,8 +129,8 @@ class FitxatgeController extends Controller
                 return redirect()->route('inici')->with('showSweetAlert', compact('title', 'text', 'type'));
             }
         } else {
-            $title = 'Encara no has marcat l\'entrada avui';
-            $text = 'Has d\'iniciar la teva jornada laboral abans de marcar la sortida!';
+            $title = 'Encara no has marcat la entrada avui';
+            $text = 'Has de començar la teva jornada laboral abans de marcar la sortida!';
             $type = 'error';
 
             return redirect()->route('inici')->with('showSweetAlert', compact('title', 'text', 'type'));
