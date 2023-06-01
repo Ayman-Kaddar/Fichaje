@@ -25,7 +25,12 @@ lasemana = [
 ];
 diassemana = ["dl", "dt", "dc", "dj", "dv", "ds", "dg"];
 //Tras cargarse la página ...
+
+var calendariVoid;
+var canChange = true;
+
 window.onload = function () {
+    calendariVoid = document.getElementById('dias').outerHTML;
     //fecha actual
     hoy = new Date(); //objeto fecha actual
     diasemhoy = hoy.getDay(); //dia semana actual
@@ -83,6 +88,13 @@ function primeralinea() {
 }
 //rellenar celdas con los días
 async function escribirdias() {
+
+    canChange = false;
+
+    if (calendariVoid) {
+        document.getElementById('dias').outerHTML = calendariVoid
+    }
+
     //Buscar dia de la semana del dia 1 del mes:
     primeromes = new Date(annocal, mescal, "1"); //buscar primer día del mes
     prsem = primeromes.getDay(); //buscar día de la semana del día 1
@@ -108,11 +120,13 @@ async function escribirdias() {
             var fecha = mianno + '-' + (mimes + 1 > 9 + 1 ? eval(mimes + 1) : "0" + eval(mimes + 1)) + '-' + (midia > 9 ? midia : "0" + midia);
             const data = await getdata(fecha);
 
+            console.log(data)
+                   
             // Num del dia
             celda.innerHTML = midia;
 
             // POSO LA QUANTITAT DE HORES D'AQUELL DIA ------------------------------------------------------------------------------------------------------
-            celda.innerHTML += '<div class="hours-worked">' + data.total + ' h</div>'
+            celda.innerHTML += '<div class="hours-worked">' + Number(data.horas) + ' h</div>'
 
             //Recuperar estado inicial al cambiar de mes:
             celda.style.backgroundColor = "#e8e8db";
@@ -127,14 +141,34 @@ async function escribirdias() {
                 celda.style.color = "#a0babc";
                 celda.innerHTML = midia;
             }
+            
+            if (!(j == 6 || j == 5) && !(mimes != mescal)) {
+                if ((data.horas == 0 && data.minutos != 0) || (data.horas > 0 && data.horas <= 2)) {
+                    celda.style.backgroundColor = "#f0b19e"; // rojo
+                }
+
+                if (data.horas > 2 && data.horas <= 4) {
+                    celda.style.backgroundColor = "#edbb99"; // naranja
+                }
+
+                if (data.horas > 4 && data.horas <= 6) {
+                    celda.style.backgroundColor = "#f9e79f"; // amarillo
+                }
+
+                if (data.horas > 6) {
+                    celda.style.backgroundColor = "#abebc6"; // verde
+                }
+            }
+
             //destacar la fecha actual
             if (mimes == meshoy && midia == diahoy && mianno == annohoy) {
-                celda.style.backgroundColor = "#f0b19e";
-                celda.innerHTML = "<cite title='Fecha Actual'>" + midia + "</cite>";
+                celda.style.backgroundColor = "#FEF5E7"; 
+                celda.innerHTML = "<cite title='Fecha Actual' class='fw-bold fs-5'>" + midia + "</cite>";
 
                 //POSO LA QUANTITAT DE HORES D'AQUELL DIA ------------------------------------------------------------------------------------------------------
-                celda.innerHTML += '<div class="hours-worked">' + data.total + ' h</div>'
+                celda.innerHTML += '<div class="hours-worked">' + Number(data.horas) + ' h</div>'
             }
+
             //pasar al siguiente día
             midia = midia + 1;
             diames.setDate(midia);
@@ -142,45 +176,50 @@ async function escribirdias() {
             celda.addEventListener("click", function () {
                 let textoCelda = this.innerText;
                 let dia = textoCelda.split("\n")
-                let horas = this.querySelector(".hours-worked").textContent;
                 // SWEET ALERT ---------------------------------------------------------------------
                 Swal.fire({
                     title: `<strong> Dia ${dia[0]}</strong>`,
                     icon: 'success',
                     html: `
-                        <p>Hores Treballades: ${horas}</p>
+                        <p>Hores Treballades: ${data.horas}:${data.minutos}</p>
                         <p>Entrada: ${data.entrada}</p>
                         <p>Sortida: ${data.sortida}</p>
                     `,
                     showCloseButton: true,
                 });
             })
-
         }
     }
+
+    canChange = true;
 
 }
 //Ver mes anterior
 function mesantes() {
-    nuevomes = new Date(); //nuevo objeto de fecha
-    primeromes--; //Restamos un día al 1 del mes visualizado
-    nuevomes.setTime(primeromes); //cambiamos fecha al mes anterior
-    mescal = nuevomes.getMonth(); //cambiamos las variables que usarán las funciones
-    annocal = nuevomes.getFullYear();
-    cabecera(); //llamada a funcion de cambio de cabecera
-    escribirdias(); //llamada a funcion de cambio de tabla.
+    if (canChange) {
+        nuevomes = new Date(); //nuevo objeto de fecha
+        primeromes--; //Restamos un día al 1 del mes visualizado
+        nuevomes.setTime(primeromes); //cambiamos fecha al mes anterior
+        mescal = nuevomes.getMonth(); //cambiamos las variables que usarán las funciones
+        annocal = nuevomes.getFullYear();
+        cabecera(); //llamada a funcion de cambio de cabecera
+        escribirdias(); //llamada a funcion de cambio de tabla.
+    }
 }
 //ver mes posterior
 function mesdespues() {
-    nuevomes = new Date(); //nuevo obejto fecha
-    tiempounix = primeromes.getTime(); //tiempo de primero mes visible
-    tiempounix = tiempounix + 45 * 24 * 60 * 60 * 1000; //le añadimos 45 días
-    nuevomes.setTime(tiempounix); //fecha con mes posterior.
-    mescal = nuevomes.getMonth(); //cambiamos variables
-    annocal = nuevomes.getFullYear();
-    cabecera(); //escribir la cabecera
-    escribirdias(); //escribir la tabla
+    if (canChange) {
+        nuevomes = new Date(); //nuevo obejto fecha
+        tiempounix = primeromes.getTime(); //tiempo de primero mes visible
+        tiempounix = tiempounix + 45 * 24 * 60 * 60 * 1000; //le añadimos 45 días
+        nuevomes.setTime(tiempounix); //fecha con mes posterior.
+        mescal = nuevomes.getMonth(); //cambiamos variables
+        annocal = nuevomes.getFullYear();
+        cabecera(); //escribir la cabecera
+        escribirdias(); //escribir la tabla
+    }
 }
+    
 //volver al mes actual
 function actualizar() {
     mescal = hoy.getMonth(); //cambiar a mes actual
@@ -191,25 +230,27 @@ function actualizar() {
 //ir al mes buscado
 function mifecha() {
     //Recoger dato del año en el formulario
-    mianno = document.buscar.buscaanno.value;
-    //recoger dato del mes en el formulario
-    listameses = document.buscar.buscames;
-    opciones = listameses.options;
-    num = listameses.selectedIndex;
-    mimes = opciones[num].value;
-    //Comprobar si el año está bien escrito
-    if (isNaN(mianno) || mianno < 1) {
-        //año mal escrito: mensaje de error
-        alert("El año no es válido:\n debe ser un número mayor que 0");
-    } else {
-        //año bien escrito: ver mes en calendario:
-        mife = new Date(); //nueva fecha
-        mife.setMonth(mimes); //añadir mes y año a nueva fecha
-        mife.setFullYear(mianno);
-        mescal = mife.getMonth(); //cambiar a mes y año indicados
-        annocal = mife.getFullYear();
-        cabecera(); //escribir cabecera
-        escribirdias(); //escribir tabla
+    if (canChange) {
+        mianno = document.buscar.buscaanno.value;
+        //recoger dato del mes en el formulario
+        listameses = document.buscar.buscames;
+        opciones = listameses.options;
+        num = listameses.selectedIndex;
+        mimes = opciones[num].value;
+        //Comprobar si el año está bien escrito
+        if (isNaN(mianno) || mianno < 1) {
+            //año mal escrito: mensaje de error
+            alert("El año no es válido:\n debe ser un número mayor que 0");
+        } else {
+            //año bien escrito: ver mes en calendario:
+            mife = new Date(); //nueva fecha
+            mife.setMonth(mimes); //añadir mes y año a nueva fecha
+            mife.setFullYear(mianno);
+            mescal = mife.getMonth(); //cambiar a mes y año indicados
+            annocal = mife.getFullYear();
+            cabecera(); //escribir cabecera
+            escribirdias(); //escribir tabla
+        }
     }
 }
 

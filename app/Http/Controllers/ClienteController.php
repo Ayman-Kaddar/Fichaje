@@ -21,27 +21,33 @@ class ClienteController extends Controller
         $fitxatges = Fitxatge::where('user_id', Auth::user()->id)->where("entrada", "LIKE", now()->format('Y-m-d') . "%")->get();
         $ultim_fitxatge = Fitxatge::where('user_id', Auth::user()->id)->where("entrada", "LIKE", now()->format('Y-m-d') . "%")->orderBy("id", "DESC")->first();
 
+        $total = 0;
+
         foreach ($fitxatges as $fitxatge) {
             $timestamp1 = strtotime($fitxatge->sortida ?? now());
             $timestamp2 = strtotime($fitxatge->entrada);
 
-            $diferencia = ($timestamp1 - $timestamp2) / (60 * 60);
+            $diferencia = ($timestamp1 - $timestamp2) / 60; // Diferencia en minutos
 
+            // Obtiene los descansos para el fitxatge actual
             $descansos = Descans::where('fixtage_id', $fitxatge->id)->get();
 
             $tempsDescansat = 0;
 
+            // Calcula el tiempo total de descanso para cada descanso
             foreach ($descansos as $descans) {
-                $timestamppausa = strtotime($descans->pausa);
                 $timestampcontinuitat = strtotime($descans->continuitat ?? now());
+                $timestamppausa = strtotime($descans->pausa);
 
-                $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / (60 * 60);
+                $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / 60; // Descanso en minutos
             }
 
-
-            $hores += $diferencia - $tempsDescansat;
-            $hores = floor($hores);
+            $total += $diferencia - $tempsDescansat;
         }
+
+        // Convertir el total a horas y minutos
+        $horas = floor($total / 60);
+        $minutos = $total % 60;
 
         if ($ultim_fitxatge) {
 
@@ -65,6 +71,6 @@ class ClienteController extends Controller
             $estat = "Comença la jornada";
         }
 
-        return view('cliente.inici', compact("hores", "estat"));
+        return view('cliente.inici', compact("horas", "minutos", "estat"));
     }
 }

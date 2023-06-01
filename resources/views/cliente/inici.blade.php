@@ -64,7 +64,7 @@
     </span>
 
     <div class="text-center">
-        <p class="fs-2">{{ $hores }}h - {{ $estat }}</p>
+        <p class="fs-2">{{ $horas }}h {{ $minutos }}m - {{ $estat }}</p>
     </div>
 
     <!-- BOTONES -->

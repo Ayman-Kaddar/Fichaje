@@ -26,38 +26,42 @@ class FitxadminController extends Controller
         if ($request->user_filter) {
             $fitxatges = Fitxatge::orderBy('entrada', 'asc')->where("user_id", $request->user_filter)->get();
 
-            //dd($fitxatges[2]->toArray());
-
             foreach ($fitxatges as $fitxatge) {
-                $descansos = Descans::where('fixtage_id', $fitxatge->id)->get();
-
-                $tempsDescansat = 0;
-
-                foreach ($descansos as $descans) {
-                    $timestamppausa = strtotime($descans->pausa);
-                    $timestampcontinuitat = strtotime($descans->continuitat);
-
-                    $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / (60 * 60);
-                }
-
-                /* $fitxatge->pausa = $fitxatge->pausa ? Carbon::parse($fitxatge->pausa)->format('H:i:s') : "-";
-                $fitxatge->continuitat = $fitxatge->continuitat ? Carbon::parse($fitxatge->continuitat)->format('H:i:s') : "-"; */
-                $fitxatge->descans = floor($tempsDescansat) . 'h';
-
 
                 $fitxatge->data = Carbon::parse($fitxatge->entrada)->format('d/m/Y');
 
-                $fitxatge->entrada = Carbon::parse($fitxatge->entrada)->format('H:i:s');
-
-                $sortida = Carbon::parse($fitxatge->sortida)->format('H:i:s');
-                $fitxatge->sortida = $fitxatge->sortida ? Carbon::parse($fitxatge->sortida)->format('H:i:s') : null;
-
-                $timestamp1 = strtotime($sortida);
+                $timestamp1 = strtotime($fitxatge->sortida ?? now());
                 $timestamp2 = strtotime($fitxatge->entrada);
 
-                $diferencia = (($timestamp1 - $timestamp2) / (60 * 60)) - $tempsDescansat;
+                $diferencia = ($timestamp1 - $timestamp2) / 60; // Diferencia en minutos
 
-                $fitxatge->hores_totals = floor($diferencia) . 'h';
+                // Obtiene los descansos para el fitxatge actual
+                $descansos = Descans::where('fixtage_id', $fitxatge->id)->get();
+
+                $tempsDescansat = 0;
+                $total = 0;
+
+                // Calcula el tiempo total de descanso para cada descanso
+                foreach ($descansos as $descans) {
+                    $timestampcontinuitat = strtotime($descans->continuitat);
+                    $timestamppausa = strtotime($descans->pausa);
+
+                    $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / 60 / 60; // Descanso en minutos
+                }
+
+                $fitxatge->descans = floor($tempsDescansat) . 'h';
+
+                $total += $diferencia - $tempsDescansat;
+                // Convertir el total a horas y minutos
+                $horas = floor($total / 60);
+                $minutos = $total % 60;
+
+                $fitxatge->entrada = Carbon::parse($fitxatge->entrada)->format('H:i:s');
+                $sortida = Carbon::parse($fitxatge->sortida)->format('H:i:s');
+
+                $fitxatge->sortida = $fitxatge->sortida ? Carbon::parse($fitxatge->sortida)->format('H:i:s') : null;
+
+                $fitxatge->hores_totals = $horas . 'h ' . $minutos . ' m';
             }
 
             $user_selected = User::where("id", $request->user_filter)->first();

@@ -148,7 +148,8 @@ class FitxatgeController extends Controller
         if ($fitxatges->isEmpty()) {
             return response()->json([
                 "fecha" => $fecha,
-                "total" => 0,
+                "horas" => '00',
+                'minutos' => '00',
                 "entrada" => "No has acabat la jornada",
                 "sortida" => "No has acabat la jornada",
             ]);
@@ -160,25 +161,38 @@ class FitxatgeController extends Controller
             $timestamp1 = strtotime($fitxatge->sortida);
             $timestamp2 = strtotime($fitxatge->entrada);
 
-            $diferencia = ($timestamp1 - $timestamp2) / (60 * 60);
+            $diferencia = ($timestamp1 - $timestamp2) / 60; // Diferencia en minutos
 
+            // Obtiene los descansos para el fitxatge actual
             $descansos = Descans::where('fixtage_id', $fitxatge->id)->get();
 
             $tempsDescansat = 0;
 
+            // Calcula el tiempo total de descanso para cada descanso
             foreach ($descansos as $descans) {
                 $timestamppausa = strtotime($descans->pausa);
                 $timestampcontinuitat = strtotime($descans->continuitat);
 
-                $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / (60 * 60);
+                $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / 60; // Descanso en minutos
             }
 
             $total += $diferencia - $tempsDescansat;
         }
 
+        // Convertir el total a horas y minutos
+        $totalHoras = floor($total / 60);
+        $totalMinutos = $total % 60;
+
+        // Convertir el total a horas y minutos
+        $totalHoras = floor($total / 60);
+        $totalHoras = $totalHoras < 10 ? '0' . $totalHoras : $totalHoras;
+        $totalMinutos = $total % 60;
+        $totalMinutos = $totalMinutos < 10 ? '0' . $totalMinutos : $totalMinutos;
+
         return response()->json([
             "fecha" => $fecha,
-            "total" => floor($total),
+            "horas" => $totalHoras,
+            "minutos" => $totalMinutos,
             "entrada" => Carbon::createFromFormat('Y-m-d H:i:s', $fitxatges[0]->entrada)->format('d/m/Y H:i:s'),
             "sortida" => Carbon::createFromFormat('Y-m-d H:i:s', $fitxatges[count($fitxatges) - 1]->sortida)->format('d/m/Y H:i:s'),
         ]);
