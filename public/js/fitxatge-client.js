@@ -181,7 +181,7 @@ async function escribirdias() {
                     title: `<strong> Dia ${dia[0]}</strong>`,
                     icon: 'success',
                     html: `
-                        <p>Hores Treballades: ${data.horas}:${data.minutos}</p>
+                        <p>Hores Treballades: ${data.horas}:${data.minutos} h</p>
                         <p>Entrada: ${data.entrada}</p>
                         <p>Sortida: ${data.sortida}</p>
                     `,
