@@ -21,7 +21,7 @@ class UserImport implements ToModel, WithUpserts, WithHeadingRow
         $userExist = User::where('email', $row['correu'])->first();
 
         if ($userExist) {
-            throw new Exception('Error: El correu' . $row['correu'] . ' ja està registrat.');
+            throw new Exception('Error: El correu ' . $row['correu'] . ' ja està registrat.');
         }
 
         return new User([
