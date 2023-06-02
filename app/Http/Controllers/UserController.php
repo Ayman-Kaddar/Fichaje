@@ -95,6 +95,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->back()->with('success', 'Empleats ha estat eliminat correctament.');
+        return redirect()->back()->with('success', 'Empleat ha estat eliminat correctament.');
     }
 }
