@@ -43,13 +43,13 @@ class FitxadminController extends Controller
 
                 // Calcula el tiempo total de descanso para cada descanso
                 foreach ($descansos as $descans) {
-                    $timestampcontinuitat = strtotime($descans->continuitat);
+                    $timestampcontinuitat = strtotime($descans->continuitat ?? now());
                     $timestamppausa = strtotime($descans->pausa);
 
-                    $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / 60 / 60; // Descanso en minutos
+                    $tempsDescansat += ($timestampcontinuitat - $timestamppausa) / 60; // Descanso en minutos
                 }
 
-                $fitxatge->descans = floor($tempsDescansat) . 'h';
+                $fitxatge->descans = floor($tempsDescansat / 60) . 'h ' . $tempsDescansat % 60 . 'm';
 
                 $total += $diferencia - $tempsDescansat;
                 // Convertir el total a horas y minutos
@@ -61,7 +61,13 @@ class FitxadminController extends Controller
 
                 $fitxatge->sortida = $fitxatge->sortida ? Carbon::parse($fitxatge->sortida)->format('H:i:s') : null;
 
-                $fitxatge->hores_totals = $horas . 'h ' . $minutos . ' m';
+                $fitxatge->hores_totals = $horas . 'h ' . $minutos . 'm';
+
+                if (!$fitxatge->sortida) {
+                    $fitxatge->descans = '-';
+                    $fitxatge->sortida = '-';
+                    $fitxatge->hores_totals = '-';
+                }
             }
 
             $user_selected = User::where("id", $request->user_filter)->first();

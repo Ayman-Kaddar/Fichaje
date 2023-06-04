@@ -104,7 +104,10 @@ class FitxatgeController extends Controller
 
         $date = now()->format('Y-m-d');
         $fitxatge = Fitxatge::where('user_id', Auth::user()->id)->whereDate('entrada', $date)->orderBy("id", "DESC")->first();
-        $descans = Descans::where('fixtage_id', $fitxatge->id)->orderBy("id", "DESC")->first();
+        $descans = null;
+        if ($fitxatge) {
+            $descans = Descans::where('fixtage_id', $fitxatge->id)->orderBy("id", "DESC")->first();
+        }
 
         if ($fitxatge) {
 
