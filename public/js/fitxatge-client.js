@@ -143,19 +143,16 @@ async function escribirdias() {
             }
             
             if (!(j == 6 || j == 5) && !(mimes != mescal)) {
-                if ((data.horas == 0 && data.minutos != 0) || (data.horas > 0 && data.horas <= 2)) {
+                if ((data.horas == 0 && data.minutos != 0) || (data.horas == 1)) {
                     celda.style.backgroundColor = "#f0b19e"; // rojo
                 }
-
-                if (data.horas > 2 && data.horas <= 4) {
+                if (data.horas >= 2 && data.horas < 4 ) {
                     celda.style.backgroundColor = "#edbb99"; // naranja
                 }
-
-                if (data.horas > 4 && data.horas <= 6) {
+                if (data.horas >= 4 && data.horas < 6) {
                     celda.style.backgroundColor = "#f9e79f"; // amarillo
                 }
-
-                if (data.horas > 6) {
+                if (data.horas >= 6) {
                     celda.style.backgroundColor = "#abebc6"; // verde
                 }
             }
